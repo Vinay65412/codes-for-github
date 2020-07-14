@@ -64,9 +64,12 @@ print("critical_value:  ",critical_value)
 p_value=1-chi2.cdf(x=chi_square_test,df=dof)
 print("p_value:  ",p_value)
 
+# if chi_square_test>=critical_vlaue may me it give error
+#where more than one element is ambigiuous
+#on such case we use condition like a.any() and a.all()
+#where a=(chi_square_test>=critical_value)
 
-
-if chi_square_test>=critical_value:
+if (chi_square_test>=critical_value).any():
     print("Ho is rejected  -----containing two categorical variable")
 else:
   print("H1 is retain-----contaning two categorical variable")    
