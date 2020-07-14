@@ -46,7 +46,7 @@ alpha=0.05
 
 #calculate chisqure statistics test 
 from scipy.stats  import chi2
-chi_square_statistics_test=sum([(o-e)**2/e for o,e in zip(observed_value,expected_value)]) 
+chi_square_test=sum([(o-e)**2/e for o,e in zip(observed_value,expected_value)]) 
 print("chi_square:  ",chi_square_statistics_test)
 
 
@@ -61,18 +61,18 @@ print("critical_value:  ",critical_value)
 
 #p_value is just like evidence for selecting the alternate hypothssis 
 
-p_value=1-chi2.cdf(x=chi_sq,df=dof)
+p_value=1-chi2.cdf(x=chi_square_test,df=dof)
 print("p_value:  ",p_value)
 
 
 
-if chi_sq>=critical_value:
+if chi_square_test>=critical_value:
     print("Ho is rejected  -----containing two categorical variable")
 else:
   print("H1 is retain-----contaning two categorical variable")    
 
 
-
+#we can also compare p_values for the acceptance and rejection of the hypothesis test
 
 
 
