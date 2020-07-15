@@ -52,7 +52,7 @@ print("chi_square:  ",chi_square_statistics_test)
 
 
 #critical value  is a point in the data set which we compared with test statistics to check whether nnull hypothesis is rejected or not  
-
+# Here q is The probability to  expressed significance
 
 critical_value=chi2.ppf(q=1-alpha,df=dof)
 print("critical_value:  ",critical_value)
