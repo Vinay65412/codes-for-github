@@ -4,6 +4,10 @@ Created on Tue Jun 30 14:26:05 2020
 
 @author: Priyanka
 """
+#standariztion and normalization are just  feature eng prosecese
+#standarization is used when the data is follow gussian distribution 
+#normalization when data is not follow gussian distribution
+from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 import pandas as pd 
@@ -18,9 +22,9 @@ print(X.shape)
 print(y.shape)
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2)
 print("")
-# bellow step we do for only covert the the mean and standard into 0 and 1
-#this for is only done(featuring scaling after the data cleanning )
-#sd and mean of only traning data and testing data (independent variable not for dependent varialbe)
+#not effecting there ranges of values or losing information
+
+#this one is for featuring scaling after the data cleanning 
 sc=StandardScaler()
 sc.fit(X_train)
 sc.fit(X_test)
@@ -36,11 +40,12 @@ print(X_train_sd.describe().round(0))
 print(data.describe().round(2 ))
 
 
-"""for min and max================================================================================= """
+================================================================================= 
+#normalization(max and min) 
 
 min_data=MinMaxScaler()
 min_data.fit(X_train)
-"""now for the transformation"""
+#now for the transformation
 
 X_train_min_data=min_data.transform(X_train)
 X_test_min_data=min_data.transform(X_test)
