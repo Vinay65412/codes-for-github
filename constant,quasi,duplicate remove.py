@@ -68,11 +68,15 @@ X_train_duplicate=X_train_no_qconst.T
 X_test_duplicate=X_test_no_qconst.T
 
 
-#converted into dataframe for ----
+#converted into dataframe for removing the duplicate ----
 
 
 X_train_duplicate=pd.DataFrame(X_train_duplicate)
 X_test_duplicate=pd.DataFrame(X_test_duplicate)
+
+
+
+
 print(X_train_duplicate.shape,X_train_duplicate.shape)
 #check the number of duplicate feature
 print(X_train_duplicate.duplicated().sum())
@@ -81,39 +85,6 @@ print(X_train_duplicate.duplicated().sum())
 X_train_unique=X_train_duplicate.drop_duplicates().T
 X_test_unique=X_test_duplicate.drop_duplicates().T
 print(X_train_unique.shape,X_test_unique.shape)
-
-"""
-from sklearn.feature_selection import chi2
-
-bestfeatures=SelectKBest(score_func=chi2,k=3)
-fit=bestfeatures.fit(X,Y)
-#fit=bestfeatures.transform(X,y)
-
-
-df_score=pd.DataFrame(fit.scores)
-df_columns=pd.DataFrame(X.columns)
-
-
-feature_score=pd.concat([df_score,df_columns],axis=1)
-feature_score.columns=["specs","score"]
-
-print(feature_score)
-
-print(feature_score.nlargest(10))
-"""
-
-from sklearn.ensemble import ExtraTreesClassifier
-import matplotlib.pyplot as plt
-model= ExtraTreesClassifier()
-model.fit(X,Y)
-
-print(model.feature_importances_)
-
-
-
-feat_importance=pd.Series(model.feature_importances_,index=X.columns)
-feat_importance.nlargest(10).plot(kind="barh")
-plt.show()
 
 
 
